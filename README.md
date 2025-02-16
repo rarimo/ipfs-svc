@@ -50,7 +50,55 @@ use `docker run ` with `-p 8080:80` to expose port 80 to 8080
 * Provide valid config file
 * Launch the service with `run service` command
 
+## Testing and Local Development
 
+### Setting up IPFS locally
+
+1. **Install IPFS:**
+
+```bash
+# MacOS
+brew install ipfs
+
+# Linux
+wget https://dist.ipfs.tech/kubo/v0.22.0/kubo_v0.22.0_linux-amd64.tar.gz
+tar -xvzf kubo_v0.22.0_linux-amd64.tar.gz
+cd kubo
+sudo bash install.sh
+```
+
+2. **Initialize and start IPFS:**
+
+```bash
+ipfs init
+
+ipfs daemon
+```
+
+3. **Upload endpoint:**
+
+```bash
+curl -X POST \
+  http://localhost:8000/integrations/ipfs-svc/v1/public/upload \
+  -H 'Content-Type: application/vnd.api+json' \
+  -d '{
+    "data": {
+      "type": "upload_json",
+      "attributes": {
+        "metadata": {
+          "name": "Test",
+          "description": "Test IPFS upload"
+        }
+      }
+    }
+  }'
+```
+
+4. **Verify uploaded content:** 
+
+```bash 
+ipfs cat <received_hash>
+```
 
 ### Third-party services
 

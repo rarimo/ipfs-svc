@@ -1,0 +1,32 @@
+post:
+  tags:
+    - IPFS
+  summary: Upload JSON to IPFS
+  description: Upload JSON metadata to IPFS and receive hash
+  operationId: uploadJSON
+  requestBody:
+    content:
+      application/vnd.api+json:
+        schema:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/components/schemas/UploadJSON'
+  responses:
+    200:
+      description: Success
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/components/schemas/UploadJSONResponse'
+    400:
+      $ref: '#/components/responses/invalidParameter'
+    500:
+      $ref: '#/components/responses/internalError'

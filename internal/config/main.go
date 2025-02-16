@@ -11,6 +11,8 @@ type Config interface {
 	comfig.Logger
 	types.Copuser
 	comfig.Listenerer
+
+	IPFSConfig
 }
 
 type config struct {
@@ -18,6 +20,8 @@ type config struct {
 	types.Copuser
 	comfig.Listenerer
 	getter kv.Getter
+
+	IPFSConfig
 }
 
 func New(getter kv.Getter) Config {
@@ -26,5 +30,6 @@ func New(getter kv.Getter) Config {
 		Copuser:    copus.NewCopuser(getter),
 		Listenerer: comfig.NewListenerer(getter),
 		Logger:     comfig.NewLogger(getter, comfig.LoggerOpts{}),
+		IPFSConfig: NewIPFSConfig(getter),
 	}
 }

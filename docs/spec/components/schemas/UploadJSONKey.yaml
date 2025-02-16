@@ -1,0 +1,10 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Unique identifier
+  type:
+    type: string
+    enum: [ upload_json ]
+required:
+  - type

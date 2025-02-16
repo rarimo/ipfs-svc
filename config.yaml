@@ -11,3 +11,7 @@ cop:
   upstream: "http://..."
   service_name: ipfs-svc
   service_port: 80
+
+ipfs:
+  node_address: "http://localhost:5001"
+  timeout: 30s
