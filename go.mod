@@ -1,4 +1,4 @@
-module github.com/Dmytro-Hladkykh/ipfs-svc
+module github.com/rarimo/ipfs-svc
 
 go 1.23.0
 

@@ -4,7 +4,7 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/Dmytro-Hladkykh/ipfs-svc/internal/config"
+	"github.com/rarimo/ipfs-svc/internal/config"
 	"gitlab.com/distributed_lab/kit/copus/types"
 	"gitlab.com/distributed_lab/logan/v3"
 	"gitlab.com/distributed_lab/logan/v3/errors"

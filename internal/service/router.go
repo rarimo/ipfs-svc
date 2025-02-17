@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/Dmytro-Hladkykh/ipfs-svc/internal/service/handlers"
-	"github.com/Dmytro-Hladkykh/ipfs-svc/internal/service/helpers"
+	"github.com/rarimo/ipfs-svc/internal/service/handlers"
+	"github.com/rarimo/ipfs-svc/internal/service/helpers"
 	"github.com/go-chi/chi"
 	"gitlab.com/distributed_lab/ape"
 )

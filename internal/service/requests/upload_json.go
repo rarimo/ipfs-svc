@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Dmytro-Hladkykh/ipfs-svc/resources"
+	"github.com/rarimo/ipfs-svc/resources"
 	validation "github.com/go-ozzo/ozzo-validation/v4"
 )
 

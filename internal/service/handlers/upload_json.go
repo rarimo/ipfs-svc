@@ -5,10 +5,10 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/Dmytro-Hladkykh/ipfs-svc/internal/service/helpers"
-	"github.com/Dmytro-Hladkykh/ipfs-svc/internal/service/ipfs"
-	"github.com/Dmytro-Hladkykh/ipfs-svc/internal/service/requests"
-	"github.com/Dmytro-Hladkykh/ipfs-svc/resources"
+	"github.com/rarimo/ipfs-svc/internal/service/helpers"
+	"github.com/rarimo/ipfs-svc/internal/service/ipfs"
+	"github.com/rarimo/ipfs-svc/internal/service/requests"
+	"github.com/rarimo/ipfs-svc/resources"
 	"gitlab.com/distributed_lab/ape"
 	"gitlab.com/distributed_lab/ape/problems"
 )

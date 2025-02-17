@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/Dmytro-Hladkykh/ipfs-svc/internal/config"
+	"github.com/rarimo/ipfs-svc/internal/config"
 	"gitlab.com/distributed_lab/logan/v3"
 )
 

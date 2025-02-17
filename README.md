@@ -7,7 +7,7 @@ This service provides IPFS uploading functionality
 ## Install
 
   ```
-  git clone github.com/Dmytro-Hladkykh/ipfs-svc
+  git clone github.com/rarimo/ipfs-svc
   cd ipfs-svc
   go build main.go
   export KV_VIPER_FILE=./config.yaml
@@ -40,8 +40,8 @@ Make sure that docker installed.
 use `docker run ` with `-p 8080:80` to expose port 80 to 8080
 
   ```
-  docker build -t github.com/Dmytro-Hladkykh/ipfs-svc .
-  docker run -e KV_VIPER_FILE=/config.yaml github.com/Dmytro-Hladkykh/ipfs-svc
+  docker build -t github.com/rarimo/ipfs-svc .
+  docker run -e KV_VIPER_FILE=/config.yaml github.com/rarimo/ipfs-svc
   ```
 
 ## Running from Source
