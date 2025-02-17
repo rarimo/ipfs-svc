@@ -1,6 +1,6 @@
 module github.com/rarimo/ipfs-svc
 
-go 1.23.0
+go 1.23
 
 require (
 	github.com/alecthomas/kingpin v2.2.6+incompatible
