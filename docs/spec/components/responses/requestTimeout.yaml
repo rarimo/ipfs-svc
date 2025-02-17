@@ -1,0 +1,5 @@
+description: Requested timeout
+content:
+  application/vnd.api+json:
+    schema:
+      $ref: '#/components/schemas/Errors'

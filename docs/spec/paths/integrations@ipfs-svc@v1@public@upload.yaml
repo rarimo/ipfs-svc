@@ -28,5 +28,7 @@ post:
                 $ref: '#/components/schemas/UploadJSONResponse'
     400:
       $ref: '#/components/responses/invalidParameter'
+    408:
+      $ref: '#/components/responses/requestTimeout'
     500:
       $ref: '#/components/responses/internalError'
