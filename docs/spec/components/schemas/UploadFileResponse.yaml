@@ -1,0 +1,14 @@
+allOf:
+  - $ref: '#/components/schemas/UploadFileKey'
+  - type: object
+    required:
+      - attributes
+    properties:
+      attributes:
+        type: object
+        required:
+          - hash
+        properties:
+          hash:
+            type: string
+            description: IPFS hash of the uploaded file

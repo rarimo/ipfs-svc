@@ -10,7 +10,8 @@ import (
 )
 
 const (
-	defaultTimeout = 30 * time.Second
+	defaultTimeout  = 30 * time.Second
+	defaultFileSize = 10 << 20 // 10MB
 )
 
 type IPFSConfig interface {
@@ -31,6 +32,7 @@ func NewIPFSConfig(getter kv.Getter) IPFSConfig {
 type IPFSParams struct {
 	NodeAddress string        `fig:"node_address,required"`
 	Timeout     time.Duration `fig:"timeout"`
+	MaxFileSize int64         `fig:"max_file_size"`
 }
 
 func (c *ipfsConfig) IPFS() *IPFSParams {
@@ -45,6 +47,10 @@ func (c *ipfsConfig) IPFS() *IPFSParams {
 
 		if cfg.Timeout == 0 {
 			cfg.Timeout = defaultTimeout
+		}
+
+		if cfg.MaxFileSize == 0 {
+			cfg.MaxFileSize = defaultFileSize
 		}
 
 		return &cfg

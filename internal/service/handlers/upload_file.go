@@ -3,6 +3,7 @@ package handlers
 import (
 	"context"
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/rarimo/ipfs-svc/internal/service/helpers"
@@ -13,20 +14,35 @@ import (
 	"gitlab.com/distributed_lab/ape/problems"
 )
 
-func UploadJSON(w http.ResponseWriter, r *http.Request) {
-	request, err := requests.NewUploadJSON(r)
+func UploadFile(w http.ResponseWriter, r *http.Request) {
+	cfg := helpers.Config(r)
+
+	maxFileSize := cfg.IPFS().MaxFileSize
+
+	if err := r.ParseMultipartForm(maxFileSize); err != nil {
+		ape.RenderErr(w, problems.BadRequest(fmt.Errorf("failed to parse multipart form: %w", err))...)
+		return
+	}
+
+	file, _, err := r.FormFile("image")
+	if err != nil {
+		ape.RenderErr(w, problems.BadRequest(fmt.Errorf("failed to get image file from request: %w", err))...)
+		return
+	}
+	defer file.Close()
+
+	_, err = requests.NewUploadFile(r)
 	if err != nil {
 		ape.RenderErr(w, problems.BadRequest(err)...)
 		return
 	}
 
-	cfg := helpers.Config(r)
 	ipfsClient := ipfs.NewClient(ipfs.ClientOpts{
 		NodeAddress: cfg.IPFS().NodeAddress,
 		Timeout:     cfg.IPFS().Timeout,
 	})
 
-	hash, err := ipfsClient.UploadJSON(r.Context(), request.Data.Attributes.Metadata)
+	hash, err := ipfsClient.UploadFile(r.Context(), file)
 	if err != nil {
 		log := helpers.Log(r).WithError(err)
 
@@ -35,23 +51,23 @@ func UploadJSON(w http.ResponseWriter, r *http.Request) {
 			log.Error("ipfs upload timeout")
 			ape.RenderErr(w, problems.RequestTimeout())
 		default:
-			log.Error("failed to upload to ipfs")
+			log.Error("failed to upload image to ipfs")
 			ape.RenderErr(w, problems.InternalError())
 		}
 		return
 	}
 
-	response := resources.UploadJsonResponse{
+	response := resources.UploadFileResponse{
 		Key: resources.Key{
 			ID:   hash,
-			Type: resources.JSON,
+			Type: resources.FILE,
 		},
-		Attributes: resources.UploadJsonResponseAttributes{
+		Attributes: resources.UploadFileResponseAttributes{
 			Hash: hash,
 		},
 	}
 
-	ape.Render(w, resources.UploadJsonResponseResponse{
+	ape.Render(w, resources.UploadFileResponseResponse{
 		Data: response,
 	})
 }
