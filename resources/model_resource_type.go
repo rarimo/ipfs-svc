@@ -8,5 +8,6 @@ type ResourceType string
 
 // List of ResourceType
 const (
-	UPLOAD_JSON ResourceType = "upload_json"
+	FILE ResourceType = "upload_file"
+	JSON ResourceType = "upload_json"
 )

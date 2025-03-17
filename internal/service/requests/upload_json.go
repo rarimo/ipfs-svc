@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/rarimo/ipfs-svc/resources"
 	validation "github.com/go-ozzo/ozzo-validation/v4"
+	"github.com/rarimo/ipfs-svc/resources"
 )
 
 func NewUploadJSON(r *http.Request) (req resources.UploadJsonRequest, err error) {
@@ -17,7 +17,7 @@ func NewUploadJSON(r *http.Request) (req resources.UploadJsonRequest, err error)
 
 	reqData := req.Data.Attributes
 	err = validation.Errors{
-		"data/type":            validation.Validate(req.Data.Type, validation.Required, validation.In(resources.UPLOAD_JSON)),
+		"data/type":            validation.Validate(req.Data.Type, validation.Required, validation.In(resources.JSON)),
 		"data/attributes/salt": validation.Validate(reqData.Metadata, validation.Required),
 	}.Filter()
 

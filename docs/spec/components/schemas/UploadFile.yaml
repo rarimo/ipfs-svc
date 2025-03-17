@@ -1,0 +1,16 @@
+allOf:
+  - $ref: '#/components/schemas/UploadFileKey'
+  - type: object
+    x-go-is-request: true
+    required:
+      - attributes
+    properties:
+      attributes:
+        type: object
+        required:
+          - file
+        properties:
+          file:
+            type: string
+            format: "[]byte"
+            description: File to be uploaded to IPFS

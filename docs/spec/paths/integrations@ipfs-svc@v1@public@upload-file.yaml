@@ -1,0 +1,34 @@
+post:
+  tags:
+    - IPFS
+  summary: Upload file to IPFS
+  description: Upload file to IPFS and receive hash
+  operationId: uploadFile
+  requestBody:
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          required:
+            - data
+          properties:
+            data:
+              $ref: '#/components/schemas/UploadFile'
+  responses:
+    200:
+      description: Success
+      content:
+        application/vnd.api+json:
+          schema:
+            type: object
+            required:
+              - data
+            properties:
+              data:
+                $ref: '#/components/schemas/UploadFileResponse'
+    400:
+      $ref: '#/components/responses/invalidParameter'
+    408:
+      $ref: '#/components/responses/requestTimeout'
+    500:
+      $ref: '#/components/responses/internalError'

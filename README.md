@@ -77,6 +77,8 @@ ipfs daemon
 
 3. **Upload endpoint:**
 
+Upload JSON:
+
 ```bash
 curl -X POST \
   http://localhost:8000/integrations/ipfs-svc/v1/public/upload \
@@ -92,6 +94,15 @@ curl -X POST \
       }
     }
   }'
+```
+
+Upload file: 
+
+```bash
+curl -X POST \
+  http://localhost:8000/integrations/ipfs-svc/v1/public/upload-file \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'file=@/path/to/file.jpg'
 ```
 
 4. **Verify uploaded content:** 

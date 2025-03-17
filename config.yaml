@@ -15,3 +15,4 @@ cop:
 ipfs:
   node_address: "http://localhost:5001"
   timeout: 30s
+  max_file_size: 10485760 # 10MB
