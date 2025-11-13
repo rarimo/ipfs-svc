@@ -49,7 +49,7 @@ func (c *Client) UploadJSON(ctx context.Context, data json.RawMessage) (string, 
 	done := make(chan result, 1)
 
 	go func() {
-		hash, err := c.sh.Add(reader)
+		hash, err := c.sh.Add(reader, shell.Pin(true))
 		done <- result{hash: hash, err: err}
 	}()
 
@@ -78,7 +78,7 @@ func (c *Client) UploadFile(ctx context.Context, file io.Reader) (string, error)
 	done := make(chan result, 1)
 
 	go func() {
-		hash, err := c.sh.Add(file)
+		hash, err := c.sh.Add(file, shell.Pin(true))
 		done <- result{hash: hash, err: err}
 	}()
 
